@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國泰世華 CUBE - 轉帳功能</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Step 1: Home Page -->
+        <div class="screen active" id="home-screen">
+            <div class="status-bar">
+                <span class="time">16:49</span>
+                <div class="status-icons">
+                    <span class="signal">●●●</span>
+                    <span class="battery">86%</span>
+                </div>
+            </div>
+            
+            <header class="app-header">
+                <div class="header-content">
+                    <div class="greeting">
+                        <h1>您好，王小明</h1>
+                        <p class="current-time">2025年6月17日 星期二</p>
+                    </div>
+                    <div class="notifications">
+                        <div class="notification-icon">🔔</div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <section class="account-summary">
+                    <div class="account-card">
+                        <div class="account-info">
+                            <span class="account-label">台幣活期存款</span>
+                            <span class="account-number">1234-5678-9012-3456</span>
+                        </div>
+                        <div class="balance">
+                            <span class="balance-amount">$168,520</span>
+                            <span class="balance-label">可用餘額</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="quick-actions">
+                    <div class="quick-transfer-card" onclick="goToScreen('recipient-screen')">
+                        <div class="quick-transfer-content">
+                            <div class="quick-transfer-icon">💳</div>
+                            <div class="quick-transfer-text">
+                                <h3>快速轉帳</h3>
+                                <p>輕鬆轉帳給常用收款人</p>
+                            </div>
+                            <div class="quick-transfer-arrow">→</div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-grid">
+                        <div class="action-item">
+                            <div class="action-icon">📱</div>
+                            <span>掃碼支付</span>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon">💰</div>
+                            <span>投資理財</span>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon">🏦</div>
+                            <span>信用卡</span>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon">📋</div>
+                            <span>更多服務</span>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Step 2: Recipient Selection -->
+        <div class="screen" id="recipient-screen">
+            <div class="status-bar">
+                <span class="time">16:49</span>
+                <div class="status-icons">
+                    <span class="signal">●●●</span>
+                    <span class="battery">86%</span>
+                </div>
+            </div>
+            
+            <header class="screen-header">
+                <button class="back-btn" onclick="goToScreen('home-screen')">←</button>
+                <h2>選擇收款人</h2>
+                <div></div>
+            </header>
+
+            <main class="main-content">
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" placeholder="搜尋收款人姓名或帳號" class="search-input">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                </div>
+
+                <section class="recent-recipients">
+                    <h3>最近轉帳</h3>
+                    <div class="recipient-list">
+                        <div class="recipient-item" onclick="selectRecipient('林美美', '台新銀行', '812-45-678-901')">
+                            <div class="recipient-avatar">林</div>
+                            <div class="recipient-info">
+                                <div class="recipient-name">林美美</div>
+                                <div class="recipient-bank">台新銀行 812-45-678-901</div>
+                                <div class="last-transfer">上次轉帳：2025/6/15</div>
+                            </div>
+                            <div class="recipient-select">→</div>
+                        </div>
+                        
+                        <div class="recipient-item" onclick="selectRecipient('陳大華', '國泰世華', '013-12-345-678')">
+                            <div class="recipient-avatar">陳</div>
+                            <div class="recipient-info">
+                                <div class="recipient-name">陳大華</div>
+                                <div class="recipient-bank">國泰世華 013-12-345-678</div>
+                                <div class="last-transfer">上次轉帳：2025/6/12</div>
+                            </div>
+                            <div class="recipient-select">→</div>
+                        </div>
+                        
+                        <div class="recipient-item" onclick="selectRecipient('張小芳', '中國信託', '822-98-765-432')">
+                            <div class="recipient-avatar">張</div>
+                            <div class="recipient-info">
+                                <div class="recipient-name">張小芳</div>
+                                <div class="recipient-bank">中國信託 822-98-765-432</div>
+                                <div class="last-transfer">上次轉帳：2025/6/10</div>
+                            </div>
+                            <div class="recipient-select">→</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="add-recipient">
+                    <div class="add-recipient-btn">
+                        <span class="add-icon">+</span>
+                        <span>新增收款人</span>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Step 3: Amount Input -->
+        <div class="screen" id="amount-screen">
+            <div class="status-bar">
+                <span class="time">16:49</span>
+                <div class="status-icons">
+                    <span class="signal">●●●</span>
+                    <span class="battery">86%</span>
+                </div>
+            </div>
+            
+            <header class="screen-header">
+                <button class="back-btn" onclick="goToScreen('recipient-screen')">←</button>
+                <h2>轉帳金額</h2>
+                <div></div>
+            </header>
+
+            <main class="main-content">
+                <div class="recipient-summary">
+                    <div class="selected-recipient">
+                        <div class="recipient-avatar" id="selected-avatar">林</div>
+                        <div class="recipient-details">
+                            <div class="recipient-name" id="selected-name">林美美</div>
+                            <div class="recipient-account" id="selected-account">台新銀行 812-45-678-901</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="amount-input-section">
+                    <div class="amount-display">
+                        <span class="currency">NT$</span>
+                        <span class="amount" id="amount-display">0</span>
+                    </div>
+                    <div class="balance-info">
+                        <span>可用餘額：NT$168,520</span>
+                    </div>
+                </div>
+
+                <div class="memo-section">
+                    <input type="text" placeholder="轉帳備註（選填）" class="memo-input" id="memo-input">
+                </div>
+
+                <div class="keypad">
+                    <button class="key" onclick="inputNumber('1')">1</button>
+                    <button class="key" onclick="inputNumber('2')">2</button>
+                    <button class="key" onclick="inputNumber('3')">3</button>
+                    <button class="key" onclick="inputNumber('4')">4</button>
+                    <button class="key" onclick="inputNumber('5')">5</button>
+                    <button class="key" onclick="inputNumber('6')">6</button>
+                    <button class="key" onclick="inputNumber('7')">7</button>
+                    <button class="key" onclick="inputNumber('8')">8</button>
+                    <button class="key" onclick="inputNumber('9')">9</button>
+                    <button class="key key--quick" onclick="addAmount(1000)">+1000</button>
+                    <button class="key" onclick="inputNumber('0')">0</button>
+                    <button class="key key--delete" onclick="deleteNumber()">⌫</button>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn--primary btn--full-width" id="next-btn" onclick="goToScreen('auth-screen')" disabled>下一步</button>
+                </div>
+            </main>
+        </div>
+
+        <!-- Step 4: Biometric Authentication -->
+        <div class="screen" id="auth-screen">
+            <div class="status-bar">
+                <span class="time">16:49</span>
+                <div class="status-icons">
+                    <span class="signal">●●●</span>
+                    <span class="battery">86%</span>
+                </div>
+            </div>
+            
+            <header class="screen-header">
+                <button class="back-btn" onclick="goToScreen('amount-screen')">←</button>
+                <h2>身份驗證</h2>
+                <div></div>
+            </header>
+
+            <main class="main-content auth-content">
+                <div class="transfer-summary">
+                    <div class="summary-item">
+                        <span class="label">收款人</span>
+                        <span class="value" id="auth-recipient">林美美</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">收款帳號</span>
+                        <span class="value" id="auth-account">台新銀行 812-45-678-901</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">轉帳金額</span>
+                        <span class="value highlight" id="auth-amount">NT$5,000</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">手續費</span>
+                        <span class="value">NT$15</span>
+                    </div>
+                </div>
+
+                <div class="auth-section">
+                    <div class="face-id-container" id="face-id-container">
+                        <div class="face-id-icon">
+                            <div class="face-outline">
+                                <div class="face-inner"></div>
+                            </div>
+                        </div>
+                        <h3>Face ID 驗證</h3>
+                        <p>請將臉部對準螢幕進行驗證</p>
+                        <button class="btn btn--primary" id="face-id-btn" onclick="startFaceId()">開始驗證</button>
+                    </div>
+
+                    <div class="auth-loading hidden" id="auth-loading">
+                        <div class="loading-spinner"></div>
+                        <p>驗證中...</p>
+                    </div>
+
+                    <div class="auth-success hidden" id="auth-success">
+                        <div class="success-icon">✓</div>
+                        <p>驗證成功</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Step 5: Success Confirmation -->
+        <div class="screen" id="success-screen">
+            <div class="status-bar">
+                <span class="time">16:50</span>
+                <div class="status-icons">
+                    <span class="signal">●●●</span>
+                    <span class="battery">86%</span>
+                </div>
+            </div>
+            
+            <header class="screen-header">
+                <div></div>
+                <h2>轉帳成功</h2>
+                <button class="close-btn" onclick="goToScreen('home-screen')">✕</button>
+            </header>
+
+            <main class="main-content success-content">
+                <div class="success-icon-large">
+                    <div class="checkmark">✓</div>
+                </div>
+                
+                <h3>轉帳成功！</h3>
+                <p class="success-message">您的轉帳已成功完成</p>
+
+                <div class="transaction-details">
+                    <div class="detail-item">
+                        <span class="label">收款人</span>
+                        <span class="value" id="success-recipient">林美美</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">收款帳號</span>
+                        <span class="value" id="success-account">台新銀行 812-45-678-901</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">轉帳金額</span>
+                        <span class="value highlight" id="success-amount">NT$5,000</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">手續費</span>
+                        <span class="value">NT$15</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">交易時間</span>
+                        <span class="value">2025/6/17 16:49</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">交易序號</span>
+                        <span class="value">TXN20250617164901</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">到帳時間</span>
+                        <span class="value">即時到帳</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn--outline btn--full-width mb-8" onclick="shareTransaction()">分享明細</button>
+                    <button class="btn btn--primary btn--full-width" onclick="goToScreen('home-screen')">返回首頁</button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
